@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="19sp"
+        android:text="Score:0" />
+
+    <TextView
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="27sp"
+        android:text="Select the right Color" />
+
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/left_button"
+            android:onClick="leftButtonClick"
+            android:background="@color/colorPrimary"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            />
+
+        <Button
+            android:id="@+id/right_button"
+            android:onClick="rightButtonClick"
+            android:background="@color/colorAccent"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="70dp"
+            />
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="40dp"
+        android:layout_gravity="center"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cyan"/>
+
+</LinearLayout>
