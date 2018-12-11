@@ -6,45 +6,58 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
     private Spinner mSpinner;
+    private ImageView mPoster;
+    private TextView mExplain;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mSpinner = findViewById(R.id.movieSpinner);
+        mPoster = findViewById(R.id.posterView);
+        mExplain = findViewById(R.id.explain);
+
         mSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //TODO your code goes here
-                //Call function:showMovieInfo(int id)
-                //  -> call pic and raw(text) file from res folder by ID
+
+                String title = (String)mSpinner.getSelectedItem();
+                title = title.toLowerCase().replace(" ", "_");
+                setText(title);
+                setPicture(title);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                //
+                // nothing to do
             }
         });
-        //Setting images -> ImageView
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.drawable.GodFather);
+    }
 
-        // To read row file
-        // "GodFather" -> R.raw.GodFather
-        int id = getResources().getIdentifier("GodFather", "raw", getPackageName());
+    private void setText(String title){
         String result = "";
 
-        Scanner in = new Scanner(getResources().openRawResource(R.raw.GodFather));
+        int id = getResources().getIdentifier(title, "raw", getPackageName());
+        Scanner in = new Scanner(getResources().openRawResource(id));
 
-        while(in.hasNext()) {
+        while (in.hasNext()) {
             result += in.nextLine();
         }
         in.close();
+
+        mExplain.setText(result);
+    }
+
+    private void setPicture(String title){
+        int id = getResources().getIdentifier(title, "drawable", getPackageName());
+        mPoster.setImageResource(id);
     }
 }

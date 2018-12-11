@@ -2,13 +2,14 @@
     <string name="app_name">assignment2</string>
     <string-array name="movies">
         <item>Catch me If you can</item>
-        <item>Fight Club</item>
+        <item>Flight Club</item>
         <item>Forrest Gump</item>
-        <item>God Father</item>
+        <item>The GodFather</item>
         <item>Good Will Hunting</item>
         <item>Pulp Fiction</item>
-        <item>The Hungover</item>
-        <item>The Show Shank Redemption</item>
+        <item>The Hangover</item>
+        <item>The ShawShank Redemption</item>
         <item>Titanic</item>
     </string-array>
+    <string name="test">Toast here</string>
 </resources>
