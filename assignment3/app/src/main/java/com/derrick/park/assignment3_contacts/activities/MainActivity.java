@@ -3,6 +3,7 @@ package com.derrick.park.assignment3_contacts.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 
 import com.derrick.park.assignment3_contacts.R;
 import com.derrick.park.assignment3_contacts.models.Contact;
@@ -43,5 +44,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
     }
 }
