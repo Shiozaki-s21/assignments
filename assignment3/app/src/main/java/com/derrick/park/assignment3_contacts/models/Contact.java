@@ -25,7 +25,7 @@ public class Contact {
     }
 
     public Name getName() {
-        return name;
+        return this.name;
     }
 
     public Location getLocation() {
@@ -63,6 +63,8 @@ public class Contact {
         public String getLast() {
             return last;
         }
+
+        public String getFullName() { return first + " " + last; }
 
         @Override
         public String toString() {
