@@ -15,6 +15,9 @@ import com.derrick.park.assignment3_contacts.network.ContactClient;
 import com.derrick.park.assignment3_contacts.network.RandomUserService;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,11 +40,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ContactList> call, Response<ContactList> response) {
                 if (response.isSuccessful()) {
-                     mContactList.addAll(response.body().getContactList());
-                     for(Contact contact: mContactList) {
-                         Log.d(TAG, "onResponse: " + mContactList.size());
-                         Log.d(TAG, "onResponse: " + contact);
-                     }
+                    mContactList = response.body().getContactList();
+                    Collections.sort(mContactList, new Comparator<Contact>() {
+                        @Override
+                        public int compare(Contact o1, Contact o2) {
+                            return o1.getName().toString().compareToIgnoreCase(o2.getName().toString());
+                        }
+                    });
+
+                    mRecyclerView = findViewById(R.id.recyclerView);
+                    mAdapter = new ContactListAdapter(mContactList);
+                    mRecyclerView.setAdapter(mAdapter);
+                    mRecyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
                 }
             }
 
@@ -52,10 +62,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mAdapter = new ContactListAdapter(this, mContactList);
-        mRecyclerView.setAdapter(mAdapter);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override

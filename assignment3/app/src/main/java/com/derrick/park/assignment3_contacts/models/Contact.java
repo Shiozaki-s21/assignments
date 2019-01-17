@@ -25,7 +25,7 @@ public class Contact {
     }
 
     public Name getName() {
-        return this.name;
+        return name;
     }
 
     public Location getLocation() {
@@ -48,7 +48,7 @@ public class Contact {
     /**
      * Name {first: , last: }
      */
-    class Name {
+    public class Name {
         @SerializedName("first")
         @Expose
         private String first;
@@ -63,8 +63,6 @@ public class Contact {
         public String getLast() {
             return last;
         }
-
-        public String getFullName() { return first + " " + last; }
 
         @Override
         public String toString() {
