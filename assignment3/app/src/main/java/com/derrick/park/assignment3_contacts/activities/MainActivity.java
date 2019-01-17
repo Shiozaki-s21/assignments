@@ -11,6 +11,7 @@ import com.derrick.park.assignment3_contacts.R;
 import com.derrick.park.assignment3_contacts.adapter.ContactListAdapter;
 import com.derrick.park.assignment3_contacts.models.Contact;
 import com.derrick.park.assignment3_contacts.models.ContactList;
+import com.derrick.park.assignment3_contacts.models.NameBoard;
 import com.derrick.park.assignment3_contacts.network.ContactClient;
 import com.derrick.park.assignment3_contacts.network.RandomUserService;
 
@@ -48,6 +49,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
 
+                    // insert NameBoard
+                    insertNameBoard();
                     mRecyclerView = findViewById(R.id.recyclerView);
                     mAdapter = new ContactListAdapter(mContactList);
                     mRecyclerView.setAdapter(mAdapter);
@@ -68,5 +71,20 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    private void insertNameBoard() {
+        ArrayList<Contact> tmpList = new ArrayList<>();
+        String firstString = "";
+
+        for (Contact con: mContactList) {
+            if(firstString.compareToIgnoreCase(con.getName().toString().substring(0,1)) < 0) {
+                firstString = con.getName().toString().substring(0,1).toUpperCase();
+                tmpList.add(new NameBoard(firstString));
+                firstString = firstString.toLowerCase();
+            }
+            tmpList.add(con);
+        }
+        mContactList = tmpList;
     }
 }

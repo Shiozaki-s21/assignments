@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.derrick.park.assignment3_contacts.R;
 import com.derrick.park.assignment3_contacts.models.Contact;
+import com.derrick.park.assignment3_contacts.models.NameBoard;
 
 import java.util.ArrayList;
 
@@ -35,11 +36,13 @@ public class ContactListAdapter
         // ViewHolder
         public final TextView mContactName;
         public final TextView mContactPhoneNumber;
+        public final TextView mContactHeader;
 
         public ContactViewHolder(@NonNull View itemView, ContactListAdapter adapter) {
             super(itemView);
             this.mContactName = itemView.findViewById(R.id.contact_name);
             this.mContactPhoneNumber = itemView.findViewById(R.id.contact_phone_number);
+            this.mContactHeader = itemView.findViewById(R.id.head_character);
 
             itemView.setOnClickListener(this);
         }
@@ -54,9 +57,23 @@ public class ContactListAdapter
     public void onBindViewHolder(@NonNull ContactViewHolder contactViewHolder, int i) {
         Contact mCurrent = mContactList.get(i);
 
+
+
+        if (mCurrent.getClass().equals(NameBoard.class)) {
+            NameBoard nameBoard = (NameBoard) mCurrent;
+            contactViewHolder.mContactHeader.setText(nameBoard.getFirstChar());
+
+            contactViewHolder.mContactPhoneNumber.setVisibility(View.GONE);
+            contactViewHolder.mContactName.setVisibility(View.GONE);
+        } else {
+            contactViewHolder.mContactName.setText(mCurrent.getName().toString());
+            contactViewHolder.mContactPhoneNumber.setText(mCurrent.getCell());
+
+            contactViewHolder.mContactHeader.setVisibility(View.GONE);
+        }
+
         //TODO Get full name from Name Class
-        contactViewHolder.mContactName.setText(mCurrent.getName().toString());
-        contactViewHolder.mContactPhoneNumber.setText(mCurrent.getCell());
+
 
 
         //TODO set Capital Character

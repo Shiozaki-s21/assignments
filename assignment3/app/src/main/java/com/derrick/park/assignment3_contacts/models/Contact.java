@@ -20,6 +20,9 @@ public class Contact {
     @Expose
     private String cell;
 
+    // boolean for judging this is header or not
+    private boolean header;
+
     public String getGender() {
         return gender;
     }
@@ -38,6 +41,15 @@ public class Contact {
 
     public String getCell() {
         return cell;
+    }
+
+    // setter/getter for header
+    public boolean isHeader() {
+        return header;
+    }
+
+    public void setHeader(boolean header) {
+        this.header = header;
     }
 
     @Override
