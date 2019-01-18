@@ -31,6 +31,8 @@ public class Contact {
         return name;
     }
 
+    public void setName(String name) {this.name = new Name(name);}
+
     public Location getLocation() {
         return location;
     }
@@ -42,6 +44,8 @@ public class Contact {
     public String getCell() {
         return cell;
     }
+
+    public void setCell(String cell) {this.cell = cell;}
 
     // setter/getter for header
     public boolean isHeader() {
@@ -61,6 +65,14 @@ public class Contact {
      * Name {first: , last: }
      */
     public class Name {
+        // constructor
+        public Name(String name) {
+            String[] fullName = name.split(" ");
+            this.first = fullName[0];
+            this.last = fullName[1];
+        }
+
+
         @SerializedName("first")
         @Expose
         private String first;

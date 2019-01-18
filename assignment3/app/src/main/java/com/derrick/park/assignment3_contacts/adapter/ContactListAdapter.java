@@ -49,15 +49,13 @@ public class ContactListAdapter
 
         @Override
         public void onClick(View v) {
-            //TODO Go to next Activity
+            // Editing Contact
         }
     }
 
     @Override
     public void onBindViewHolder(@NonNull ContactViewHolder contactViewHolder, int i) {
         Contact mCurrent = mContactList.get(i);
-
-
 
         if (mCurrent.getClass().equals(NameBoard.class)) {
             NameBoard nameBoard = (NameBoard) mCurrent;
@@ -71,12 +69,6 @@ public class ContactListAdapter
 
             contactViewHolder.mContactHeader.setVisibility(View.GONE);
         }
-
-        //TODO Get full name from Name Class
-
-
-
-        //TODO set Capital Character
     }
 
     @Override
